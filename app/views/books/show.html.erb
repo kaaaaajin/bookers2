@@ -18,6 +18,8 @@
     </tbody>
    </table>
    
+   <%= link_to user_path(@book.user.id) do %><%= @book.user.name %><% end %>
+   
    
    <% if @book.user == current_user %>
     <%= link_to "Destroy", book_path(@book), method: :delete %>
