@@ -1,11 +1,8 @@
+
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-    <%= render 'info' %>
-   
-      <div class="field">
-        <h1>New book</h1>
-      </div>
+    <%= render 'info', user: @book.user %>
     </div>
       <div class="col-lg-8 ml-5">
         <h1>Book detail</h1>
@@ -14,12 +11,16 @@
             <tr>
               <td><%= image_tag @book.user.get_profile_image(100,100) %><br>
                   <%= link_to user_path(@book.user.id) do %><%= @book.user.name %><% end %></td>
+                  
               <td><%= @book.title %></td>
               <td><%= @book.body %></td>
               <td><% if @book.user == current_user %>
-                  <%= link_to "Edit", edit_book_path(@book) %><% end %></td>
+                  <%= link_to edit_book_path(@book) do %>
+                  <button type="button" class="btn btn-success">Edit</button><% end %><% end %></td>
               <td><% if @book.user == current_user %>
-                  <%= link_to "Destroy", book_path(@book), method: :delete %><% end %></td>
+                  <%= link_to book_path(@book), method: :delete do %>
+                  <button type="button" class="btn btn-danger">Destroy</button><% end %><% end %></td>
+                  
             </tr>
           </tbody>
         </table>
