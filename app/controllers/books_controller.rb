@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :ensure_book, only: [:edit, :update]
+  
   
   def index
     @book = Book.new
@@ -46,16 +46,6 @@ class BooksController < ApplicationController
     redirect_to books_path
     
   end
-  
-  def ensure_book
-    @book = Book.find(params[:id])
-    if @book.user == current_user
-      render :edit
-    else
-      redirect_to book_path(@book.id)
-    end
-  end
-  
   
   
   private
